@@ -1,11 +1,13 @@
+CC = $(shell which rebar3 2> /dev/null || which ./rebar3)
+
 compile:
-	rebar3 compile
+	$(CC) compile
 
 eunit:
-	rebar3 eunit
+	$(CC) eunit
 
 ct:
-	rebar3 ct
+	$(CC) ct
 
 tests: eunit ct
 
@@ -13,10 +15,10 @@ console:
 	erl -pa _build/default/lib/*/ebin -s fox test_run
 
 d:
-	rebar3 dialyzer
+	$(CC) dialyzer
 
 clean:
-	rebar3 clean
+	$(CC) clean
 
 clean-all:
 	rm -rf _build
